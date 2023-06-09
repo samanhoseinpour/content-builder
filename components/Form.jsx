@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { FaSpinner } from 'react-icons/fa';
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   return (
@@ -54,7 +55,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             disabled={submitting}
             className="py-1.5 px-5 text-sm bg-primary-blue rounded-full text-white"
           >
-            {submitting ? `${type}...` : `${type}`}
+            {submitting ? <FaSpinner className="animate-spin" /> : `${type}`}
           </button>
         </div>
       </form>

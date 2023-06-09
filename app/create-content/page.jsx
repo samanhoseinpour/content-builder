@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 import Form from '@components/Form';
 
@@ -15,12 +16,19 @@ const CreateContent = () => {
     tag: '',
   });
 
+  const pause = (duration) => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, duration);
+    });
+  };
+
   const createContent = async (e) => {
     e.preventDefault();
     setSubmitting(true);
 
     try {
-      const response = await fetch('/api/content/new', {
+      await pause(1000);
+      const response = await axios.post('/api/content/new', {
         method: 'POST',
         body: JSON.stringify({
           content: post.content,
