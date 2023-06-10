@@ -1,6 +1,3 @@
-// import Feed from '@components/Feed';
-import Nav from '@components/Nav';
-
 const Home = () => {
   return (
     <div>

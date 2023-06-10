@@ -37,9 +37,12 @@ const CreateContent = () => {
         }),
       });
 
-      if (response.ok) {
-        router.push('/');
-      }
+      (e) => {
+        e.preventDefault();
+        if (response.ok) {
+          router.push('/');
+        }
+      };
     } catch (error) {
       console.log(error);
     } finally {
