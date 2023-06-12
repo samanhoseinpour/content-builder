@@ -33,7 +33,9 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
         <label>
           <span className="font-satoshi font-semibold text-base text-gray-700">
             Field of Content{' '}
-            <span className="font-normal">(#crypto, #web3.0, #idea, etc.)</span>
+            <span className="font-normal">
+              (#software, #web3.0, #idea, etc.)
+            </span>
           </span>
           <input
             value={post.tag}

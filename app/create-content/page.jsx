@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
 
 import Form from '@components/Form';
 
 const CreateContent = () => {
+  const router = useRouter();
   const { data: session } = useSession();
 
   const [submitting, setSubmitting] = useState(false);
@@ -16,19 +16,12 @@ const CreateContent = () => {
     tag: '',
   });
 
-  const pause = (duration) => {
-    return new Promise((resolve) => {
-      setTimeout(resolve, duration);
-    });
-  };
-
   const createContent = async (e) => {
     e.preventDefault();
     setSubmitting(true);
 
     try {
-      await pause(1000);
-      const response = await axios.post('/api/content/new', {
+      const response = await fetch('/api/content/new', {
         method: 'POST',
         body: JSON.stringify({
           content: post.content,
@@ -37,12 +30,9 @@ const CreateContent = () => {
         }),
       });
 
-      (e) => {
-        e.preventDefault();
-        if (response.ok) {
-          router.push('/');
-        }
-      };
+      if (response.ok) {
+        router.push('/');
+      }
     } catch (error) {
       console.log(error);
     } finally {
