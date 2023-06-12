@@ -1,3 +1,5 @@
+import Feed from '@components/Feed';
+
 const Home = () => {
   return (
     <div>
@@ -12,7 +14,7 @@ const Home = () => {
           discover, create and share creative contents.
         </p>
       </section>
-      {/* <Feed /> */}
+      <Feed />
     </div>
   );
 };
