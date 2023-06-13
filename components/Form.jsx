@@ -9,7 +9,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
       </h1>
       <p className="desc text-left max-w-md">
         {type} and share amazing contents with the world, and let your
-        imagination run wild with any AI-powered platform
+        imagination run wild with any AI-powered platform.
       </p>
 
       <form

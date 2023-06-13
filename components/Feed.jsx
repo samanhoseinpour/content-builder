@@ -3,25 +3,18 @@
 import { useState, useEffect } from 'react';
 import ContentCard from './ContentCard';
 
-const ContentCardList = ({
-  data,
-  handleTagClick,
-  handleEdit,
-  handleDelete,
-}) => {
-  const renderedContentCardList = data.map((post) => {
-    return (
-      <ContentCard
-        key={post._id}
-        post={post}
-        handleTagClick={handleTagClick}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-      />
-    );
-  });
-
-  return <div className="mt-16 content_layout">{renderedContentCardList}</div>;
+const ContentCardList = ({ data, handleTagClick }) => {
+  return (
+    <div className="mt-10 content_layout">
+      {data.map((post) => (
+        <ContentCard
+          key={post._id}
+          post={post}
+          handleTagClick={handleTagClick}
+        />
+      ))}
+    </div>
+  );
 };
 
 const Feed = () => {
@@ -49,7 +42,7 @@ const Feed = () => {
         <input
           type="text"
           placeholder="Search for a tag or a username"
-          // value={SearchText}
+          value={searchText}
           onChange={handleSearchChange}
           required
           className="search_input peer"

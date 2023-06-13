@@ -7,8 +7,9 @@ import { usePathname, useRouter } from 'next/navigation';
 
 const ContentCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const [copied, setCopied] = useState('');
-  const { session: data } = useSession();
+  const { data: session } = useSession();
   const router = useRouter();
+  const pathName = usePathname();
 
   const handleCopy = () => {
     setCopied(post.content);
@@ -51,23 +52,38 @@ const ContentCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
                   ? '/assets/icons/tick.svg'
                   : '/assets/icons/copy.svg'
               }
+              alt="copied_logo"
               width={12}
               height={12}
             />
           </button>
         </div>
       </div>
-      <div>
-        <p className="my-4 font-satoshi text-sm text-gray-700">
-          {post.content}
-        </p>
-        <p
-          className="font-inter text-sm blue_gradient cursor-pointer"
-          onClick={() => handleTagClick && handleTagClick(post.tag)}
-        >
-          {post.tag}
-        </p>
-      </div>
+
+      <p className="my-4 font-satoshi text-sm text-gray-700">{post.content}</p>
+      <p
+        className="font-inter text-sm blue_gradient cursor-pointer"
+        onClick={() => handleTagClick && handleTagClick(post.tag)}
+      >
+        #{post.tag}
+      </p>
+
+      {session?.user.id === post.creator._id && pathName === '/profile' && (
+        <div className="mt-5 flex flex-center gap-4 border-t border-gray-100 pt-3">
+          <p
+            className="font-inter text-sm green_gradient cursor-pointer"
+            onClick={handleEdit}
+          >
+            Edit
+          </p>
+          <p
+            className="font-inter text-sm green_gradient cursor-pointer"
+            onClick={handleDelete}
+          >
+            Delete
+          </p>
+        </div>
+      )}
     </div>
   );
 };
